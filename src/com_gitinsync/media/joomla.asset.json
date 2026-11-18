@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "com_gitinsync",
+  "version": "0.1.0",
+  "description": "GitInSync",
+  "license": "GPL-3.0-or-later",
+  "assets": [
+    {
+      "name": "com_gitinsync.run",
+      "type": "script",
+      "uri": "com_gitinsync/run.js",
+      "dependencies": ["core"],
+      "attributes": {"defer": true}
+    }
+  ]
+}

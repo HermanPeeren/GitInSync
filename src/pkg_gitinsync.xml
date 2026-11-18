@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="package" method="upgrade">
+	<name>GitInSync</name>
+	<packagename>gitinsync</packagename>
+	<author>Herman Peeren</author>
+	<creationDate>2026-11</creationDate>
+	<copyright>Copyright (C) 2026 Yepr, Herman Peeren. All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+	<authorUrl>https://yepr.nl</authorUrl>
+	<packager>Yepr</packager>
+	<packagerurl>https://yepr.nl</packagerurl>
+	<version>0.1.0</version>
+	<description>GitInSync keeps the site's content in git, locally or on GitHub, without git on the server.</description>
+	<blockChildUninstall>true</blockChildUninstall>
+	<scriptfile>script.php</scriptfile>
+
+	<files>
+		<file type="component" id="com_gitinsync">com_gitinsync</file>
+		<file type="plugin" id="gitinsync" group="content">plg_content_gitinsync</file>
+		<file type="plugin" id="gitinsync" group="task">plg_task_gitinsync</file>
+	</files>
+</extension>

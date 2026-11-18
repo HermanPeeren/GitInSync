@@ -1,0 +1,46 @@
+includes:
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    level: 8
+
+    paths:
+        - src/com_gitinsync/administrator/src
+        - src/com_gitinsync/administrator/services
+        - src/com_gitinsync/administrator/tmpl
+        - src/plg_content_gitinsync/src
+        - src/plg_content_gitinsync/services
+        - src/plg_task_gitinsync/src
+        - src/plg_task_gitinsync/services
+        - src/script.php
+        - tests
+        - build
+        - tools
+
+    # Joomla is reference material. /joomla is git-ignored; see docs/development.md.
+    # CI fetches its own.
+    scanDirectories:
+        - joomla/libraries
+        - joomla/administrator/components
+
+    bootstrapFiles:
+        - tools/phpstan-bootstrap.php
+
+    excludePaths:
+        analyse:
+            - tests/cypress/*
+
+    ignoreErrors:
+        # DatabaseInterface::quoteName() is documented as `array|string` because it takes
+        # either and returns the same kind. Given one string it returns one string.
+        -
+            message: '~(of method Joomla\\Database\\\w+::\w+\(\) expects .+, array\|string given|Binary operation "\." between .*array\|string.* results in an error)~'
+            paths:
+                - src
+        # Joomla 6 models still report why save(), publish() and delete() refused only
+        # through getError(); there is no exception to catch instead.
+        -
+            message: '~Call to deprecated method getError\(\) of class Joomla\\CMS\\MVC\\Model\\BaseModel~'
+            path: src/com_gitinsync/administrator/src/Content/AbstractTableType.php
+
+    treatPhpDocTypesAsCertain: false

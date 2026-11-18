@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="params">
+		<fieldset name="task_params">
+			<field
+				name="time_budget"
+				type="number"
+				label="PLG_TASK_GITINSYNC_FIELD_TIME_BUDGET_LABEL"
+				description="PLG_TASK_GITINSYNC_FIELD_TIME_BUDGET_DESC"
+				default="20"
+				min="3"
+				max="120"
+				filter="integer"
+			/>
+			<field
+				name="user"
+				type="user"
+				label="PLG_TASK_GITINSYNC_FIELD_USER_LABEL"
+				description="PLG_TASK_GITINSYNC_FIELD_USER_DESC"
+				required="true"
+				filter="integer"
+			/>
+		</fieldset>
+	</fields>
+</form>

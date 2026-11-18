@@ -1,0 +1,30 @@
+/vendor/
+/node_modules/
+/build/*.zip
+/build/tmp/
+/.phpunit.cache/
+/.phpunit.result.cache
+/.php-cs-fixer.cache
+/composer.lock
+/.idea/
+/.vscode/
+/.iml
+
+# The development site: Joomla installed for static analysis, the Cypress specs and
+# trying GitInSync by hand. See docs/development.md.
+/joomla/
+
+# The content repository the development site writes (set in its options).
+/content-repository/
+
+# Scratch: notes, anything personal kept beside the repo.
+/xdiv/
+
+# Logins: the Cypress env file and the GitHub test token.
+/cypress.env.json
+/tests/github.env.json
+
+# Cypress run output.
+/tests/cypress/screenshots/
+/tests/cypress/videos/
+/tests/cypress/downloads/

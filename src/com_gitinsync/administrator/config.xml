@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<fieldset name="repository" label="COM_GITINSYNC_CONFIG_REPOSITORY" addfieldprefix="Yepr\Component\GitInSync\Administrator\Field">
+		<field
+			name="mode"
+			type="list"
+			label="COM_GITINSYNC_CONFIG_MODE_LABEL"
+			description="COM_GITINSYNC_CONFIG_MODE_DESC"
+			default="local"
+			validate="options"
+			>
+			<option value="local">COM_GITINSYNC_MODE_LOCAL</option>
+			<option value="local_github">COM_GITINSYNC_MODE_LOCAL_GITHUB</option>
+			<option value="github">COM_GITINSYNC_MODE_GITHUB</option>
+		</field>
+		<field
+			name="repository_path"
+			type="text"
+			label="COM_GITINSYNC_CONFIG_REPOSITORY_PATH_LABEL"
+			description="COM_GITINSYNC_CONFIG_REPOSITORY_PATH_DESC"
+			hint="../gitinsync-repository"
+			showon="mode:local,local_github"
+			filter="string"
+		/>
+		<field
+			name="default_branch"
+			type="text"
+			label="COM_GITINSYNC_CONFIG_DEFAULT_BRANCH_LABEL"
+			description="COM_GITINSYNC_CONFIG_DEFAULT_BRANCH_DESC"
+			default="main"
+			pattern="[A-Za-z0-9._/\-]+"
+			required="true"
+		/>
+		<field
+			name="github_owner"
+			type="text"
+			label="COM_GITINSYNC_CONFIG_GITHUB_OWNER_LABEL"
+			description="COM_GITINSYNC_CONFIG_GITHUB_OWNER_DESC"
+			showon="mode:local_github,github"
+			filter="string"
+		/>
+		<field
+			name="github_repository"
+			type="text"
+			label="COM_GITINSYNC_CONFIG_GITHUB_REPOSITORY_LABEL"
+			description="COM_GITINSYNC_CONFIG_GITHUB_REPOSITORY_DESC"
+			showon="mode:local_github,github"
+			filter="string"
+		/>
+		<field
+			name="github_token"
+			type="gitinsynctoken"
+			label="COM_GITINSYNC_CONFIG_GITHUB_TOKEN_LABEL"
+			description="COM_GITINSYNC_CONFIG_GITHUB_TOKEN_DESC"
+			showon="mode:local_github,github"
+			autocomplete="off"
+			filter="Yepr\Component\GitInSync\Administrator\Field\GitinsynctokenField::keep"
+		/>
+	</fieldset>
+
+	<fieldset name="content" label="COM_GITINSYNC_CONFIG_CONTENT">
+		<field
+			name="content_types"
+			type="checkboxes"
+			label="COM_GITINSYNC_CONFIG_CONTENT_TYPES_LABEL"
+			description="COM_GITINSYNC_CONFIG_CONTENT_TYPES_DESC"
+			default="category,fieldgroup,field,tag,article,menu,menuitem"
+			multiple="true"
+			>
+			<option value="article">COM_GITINSYNC_TYPE_ARTICLE</option>
+			<option value="category">COM_GITINSYNC_TYPE_CATEGORY</option>
+			<option value="fieldgroup">COM_GITINSYNC_TYPE_FIELDGROUP</option>
+			<option value="field">COM_GITINSYNC_TYPE_FIELD</option>
+			<option value="tag">COM_GITINSYNC_TYPE_TAG</option>
+			<option value="menu">COM_GITINSYNC_TYPE_MENU</option>
+			<option value="menuitem">COM_GITINSYNC_TYPE_MENUITEM</option>
+		</field>
+		<field
+			name="non_public"
+			type="list"
+			label="COM_GITINSYNC_CONFIG_NON_PUBLIC_LABEL"
+			description="COM_GITINSYNC_CONFIG_NON_PUBLIC_DESC"
+			default="private_only"
+			validate="options"
+			>
+			<option value="private_only">COM_GITINSYNC_CONFIG_NON_PUBLIC_PRIVATE_ONLY</option>
+			<option value="always">COM_GITINSYNC_CONFIG_NON_PUBLIC_ALWAYS</option>
+			<option value="never">COM_GITINSYNC_CONFIG_NON_PUBLIC_NEVER</option>
+		</field>
+		<field
+			name="include_trashed"
+			type="radio"
+			label="COM_GITINSYNC_CONFIG_INCLUDE_TRASHED_LABEL"
+			description="COM_GITINSYNC_CONFIG_INCLUDE_TRASHED_DESC"
+			layout="joomla.form.field.radio.switcher"
+			default="0"
+			filter="integer"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="exclude_note"
+			type="note"
+			label="COM_GITINSYNC_CONFIG_EXCLUDE_NOTE_LABEL"
+			description="COM_GITINSYNC_CONFIG_EXCLUDE_NOTE_DESC"
+			class="alert alert-warning"
+		/>
+	</fieldset>
+
+	<fieldset name="commits" label="COM_GITINSYNC_CONFIG_COMMITS">
+		<field
+			name="commit_on_save"
+			type="radio"
+			label="COM_GITINSYNC_CONFIG_COMMIT_ON_SAVE_LABEL"
+			description="COM_GITINSYNC_CONFIG_COMMIT_ON_SAVE_DESC"
+			layout="joomla.form.field.radio.switcher"
+			default="0"
+			filter="integer"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="author_identity"
+			type="list"
+			label="COM_GITINSYNC_CONFIG_AUTHOR_IDENTITY_LABEL"
+			description="COM_GITINSYNC_CONFIG_AUTHOR_IDENTITY_DESC"
+			default="noreply"
+			validate="options"
+			>
+			<option value="noreply">COM_GITINSYNC_CONFIG_AUTHOR_NOREPLY</option>
+			<option value="real">COM_GITINSYNC_CONFIG_AUTHOR_REAL</option>
+			<option value="fixed">COM_GITINSYNC_CONFIG_AUTHOR_FIXED</option>
+		</field>
+		<field
+			name="fixed_name"
+			type="text"
+			label="COM_GITINSYNC_CONFIG_FIXED_NAME_LABEL"
+			showon="author_identity:fixed"
+			filter="string"
+		/>
+		<field
+			name="fixed_email"
+			type="email"
+			label="COM_GITINSYNC_CONFIG_FIXED_EMAIL_LABEL"
+			showon="author_identity:fixed"
+			validate="email"
+		/>
+		<field
+			name="time_budget"
+			type="number"
+			label="COM_GITINSYNC_CONFIG_TIME_BUDGET_LABEL"
+			description="COM_GITINSYNC_CONFIG_TIME_BUDGET_DESC"
+			default="20"
+			min="3"
+			max="120"
+			filter="integer"
+		/>
+	</fieldset>
+
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			validate="rules"
+			filter="rules"
+			component="com_gitinsync"
+			section="component"
+		/>
+	</fieldset>
+</config>

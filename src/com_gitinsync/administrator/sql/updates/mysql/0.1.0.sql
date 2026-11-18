@@ -1,0 +1,1 @@
+-- GitInSync 0.1.0: the tables are created by install.mysql.utf8.sql.
